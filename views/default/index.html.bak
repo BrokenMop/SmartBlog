@@ -1,0 +1,34 @@
+{{extend 'centertwocols.html'}}
+
+{{for post in posts:}}
+
+<!-- post title -->
+<!-- LINK NEED TO COMPLETE -->
+<h2><a href="http://all-free-download.com/free-website-templates/">{{=post.title}}</a></h4>
+
+<!-- post info(time, author, tags ...) -->
+<!-- LINKS NEED TO COMPLETE -->
+<!-- TAGS NEED TO IMPLEMENTED -->
+{{if post.if_display_author:}}
+<p class="post-info">{{=label_posted_by}} <a href="http://all-free-download.com/free-website-templates/">{{=post.author.username}}</a> |&nbsp;
+    {{=post.post_datetime}} | {{=label_tags}} <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
+    <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
+    <a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;
+    <a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>
+{{else:}}
+<p class="post-info">{{=post.post_datetime}} | {{=label_tags}} <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
+<a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
+<a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;
+<a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>
+{{pass}}
+
+<!-- post body -->
+<p>{{=XML(post.body)}}</p>
+
+<!-- post footer(read more, commets) -->
+<!-- READ MORE NEED TO IMPLEMENTED -->
+<!-- COMMENTS NEED TO IMPLEMENTED -->
+<p class="postmeta"> <a href="http://all-free-download.com/free-website-templates/" class="readmore">{{=label_read_more}}</a> | <a href="http://all-free-download.com/free-website-templates/" class="comments">{{=label_comments}} (7)</a></p>
+{{pass}}
+
+<!-- PAGE COUNT NEED TO IMPLEMENTED -->

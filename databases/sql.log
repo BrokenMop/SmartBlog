@@ -1,0 +1,118 @@
+timestamp: 2016-04-05T02:26:48.672776
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-04-05T02:26:48.702146
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-04-05T02:26:48.735758
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2016-04-05T02:26:48.766053
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-04-05T02:26:48.794608
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-04-05T02:26:48.825234
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2016-04-06T04:05:48.320023
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name CHAR(512)
+);
+success!
+timestamp: 2016-04-06T04:05:48.365682
+CREATE TABLE post(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    body TEXT,
+    category INTEGER REFERENCES category (id) ON DELETE CASCADE,
+    author INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    if_display_author CHAR(1),
+    post_datetime TIMESTAMP
+);
+success!
+timestamp: 2016-04-06T04:06:48.305432
+ALTER TABLE auth_user ADD username CHAR(128);
+timestamp: 2016-04-06T04:06:48.357784
+ALTER TABLE auth_user ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.386192
+ALTER TABLE auth_user ADD is_active CHAR(1);
+timestamp: 2016-04-06T04:06:48.424783
+ALTER TABLE auth_user ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.468551
+ALTER TABLE auth_user ADD created_on TIMESTAMP;
+timestamp: 2016-04-06T04:06:48.494536
+ALTER TABLE auth_user ADD modified_on TIMESTAMP;
+success!
+timestamp: 2016-04-06T04:06:48.559983
+ALTER TABLE auth_group ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.593851
+ALTER TABLE auth_group ADD is_active CHAR(1);
+timestamp: 2016-04-06T04:06:48.616817
+ALTER TABLE auth_group ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.644761
+ALTER TABLE auth_group ADD created_on TIMESTAMP;
+timestamp: 2016-04-06T04:06:48.679835
+ALTER TABLE auth_group ADD modified_on TIMESTAMP;
+success!
+timestamp: 2016-04-06T04:06:48.743329
+ALTER TABLE auth_membership ADD is_active CHAR(1);
+timestamp: 2016-04-06T04:06:48.764986
+ALTER TABLE auth_membership ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.790101
+ALTER TABLE auth_membership ADD created_on TIMESTAMP;
+timestamp: 2016-04-06T04:06:48.817094
+ALTER TABLE auth_membership ADD modified_on TIMESTAMP;
+timestamp: 2016-04-06T04:06:48.845618
+ALTER TABLE auth_membership ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+success!
+timestamp: 2016-04-06T04:06:48.902779
+ALTER TABLE auth_permission ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:48.938422
+ALTER TABLE auth_permission ADD is_active CHAR(1);
+timestamp: 2016-04-06T04:06:48.964781
+ALTER TABLE auth_permission ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2016-04-06T04:06:49.001630
+ALTER TABLE auth_permission ADD created_on TIMESTAMP;
+timestamp: 2016-04-06T04:06:49.037164
+ALTER TABLE auth_permission ADD modified_on TIMESTAMP;
+success!

@@ -1,0 +1,42 @@
+<div class="sidemenu">
+    <h3>Sidebar Menu</h3>
+    <ul>
+        <li><a href="http://all-free-download.com/free-website-templates/">Home</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">TemplateInfo</a></li>
+        <li><a href="style.html">Style Demo</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">More Free Templates</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Premium Templates</a></li>
+    </ul>
+</div>
+<div class="sidemenu">
+    <h3>Links</h3>
+    <ul>
+        <li><a href="http://all-free-download.com/free-website-templates/">PDPhoto</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Alistapart</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">960 Grid System</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">FreePhotos.se</a></li>
+    </ul>
+</div>
+<div class="sidemenu">
+    <h3>Sponsors</h3>
+    <ul>
+        <li><a href="http://all-free-download.com/free-website-templates/">ThemeForest <br />
+                <span>Your Choice for Site Templates, Wordpress, Joomla and CMS Themes</span></a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">4templates <br />
+                <span>Low Cost Hi-Quality Templates</span></a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">TemplateMonster <br />
+                <span>Delivering the Best Templates on the Net!</span></a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Text Link Ads <br />
+                <span>Monetized your website</span></a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Fotolia <br />
+                <span>Free stock images or from $1</span></a> </li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Dreamhost <br />
+                <span>Premium webhosting</span></a></li>
+    </ul>
+</div>
+<h3>Wise Words</h3>
+<p> &quot;Beauty of style and harmony and grace and good rhythm depends on simplicity.&quot; </p>
+<p class="align-right"> - Plato</p>
+<h3>Support Styleshout</h3>
+<p> If you are interested in supporting my work and would like to contribute, you are welcome to make a small donation through the donate link on my website - it will be a great help and will surely be appreciated.</p>
