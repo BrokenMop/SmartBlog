@@ -21,9 +21,18 @@
  <body>
         {{include 'header.html'}}
         <div id="content-outer" >
-            <div id="content-wrapper"  class="container_16">
+
             {{include}}
             </div>
         </div>
-        {{include 'header.html'}}
-</body></html>
+        {{include 'footer.html'}}
+</body>
+
+<script>
+    $(document).ready(function() {
+        $('.alert:empty').hide();
+    });
+
+</script>
+
+</html>

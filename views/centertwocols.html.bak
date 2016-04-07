@@ -1,27 +1,9 @@
 {{extend 'layout.html'}}
-
-
-<div id="main" class="grid_12 alpha">
-    <h3>Featured</h3>
-    <div class="featured-post">
-        <h4><a href="http://all-free-download.com/free-website-templates/">Lorem ipsum dolor sit</a></h4>
-        <p class="post-info">Posted by <a href="http://all-free-download.com/free-website-templates/">erwin</a> on 09/26/08 </p>
-        <p> <a href="http://all-free-download.com/free-website-templates/"><img src="images/image.gif" width="160" height="100" alt="" class="float-left" /></a> Vestibulum venenatis. Nulla vel ipsum. Proin rutrum, urna sit amet bibendum pellentesque, ante sapien varius turpis, eu nonummy nunc urna scelerisque ante. Nunc sed leo at dolor pharetra facilisis. Sed sed lectus at justo dapibus tristique. Morbi molestie pulvinar elit. Donec dictum nibh nec est. Aliquam sagittis, lacus a pharetra tempor, enim justo tempor nisi, at aliquet nulla metus sed augue. </p>
-        <p><a class="more-link" href="http://all-free-download.com/free-website-templates/">continue reading</a></p>
+<div id="content-wrapper-twocols"  class="container_16">
+    <div id="main" class="grid_12 alpha">
+        {{include}}
     </div>
-    <div class="featured-post">
-        <h4><a href="http://all-free-download.com/free-website-templates/">Lorem ipsum dolor sit</a></h4>
-        <p class="post-info">Posted by <a href="http://all-free-download.com/free-website-templates/">erwin</a> on 09/26/08 </p>
-        <p> Vestibulum venenatis. Nulla vel ipsum. Proin rutrum, urna sit amet bibendum pellentesque, ante sapien varius turpis, eu nonummy nunc urna scelerisque ante. Nunc sed leo at dolor pharetra facilisis. Sed sed lectus at justo dapibus tristique. Morbi molestie pulvinar elit. Donec dictum nibh nec est. Aliquam sagittis, lacus a pharetra tempor, enim justo tempor nisi, at aliquet nulla metus sed augue. </p>
-        <p><a class="more-link" href="http://all-free-download.com/free-website-templates/">continue reading</a></p>
-    </div>
-    <div class="featured-post">
-        <h4><a href="http://all-free-download.com/free-website-templates/">Lorem ipsum dolor sit</a></h4>
-        <p class="post-info">Posted by <a href="http://all-free-download.com/free-website-templates/">erwin</a> on 09/26/08 </p>
-        <p> Vestibulum venenatis. Nulla vel ipsum. Proin rutrum, urna sit amet bibendum pellentesque, ante sapien varius turpis, eu nonummy nunc urna scelerisque ante. Nunc sed leo at dolor pharetra facilisis. Sed sed lectus at justo dapibus tristique. Morbi molestie pulvinar elit. Donec dictum nibh nec est. Aliquam sagittis, lacus a pharetra tempor, enim justo tempor nisi, at aliquet nulla metus sed augue. </p>
-        <p><a class="more-link" href="http://all-free-download.com/free-website-templates/">continue reading</a></p>
-    </div>
-</div>
-<div class="grid_4 omega">
+    <div class="grid_4 omega">
     {{include 'sidemenu.html'}}
+    </div>
 </div>

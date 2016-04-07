@@ -156,6 +156,9 @@ input:focus, select:focus, textarea:focus {
 	color: #7BA857;
 	background: #EFFAE6;
 }
+
+
+
 #name, #email, #message, #website {
 	width: 380px;
 }
@@ -182,7 +185,14 @@ input.button {
 	border-bottom: 1px solid #E8E8E8;
 	text-align: left;		
 }
-#content-wrapper {
+#content-wrapper-onecol {
+	margin: 0 auto;	
+	background: #fff;
+	padding-bottom: 35px;
+	padding-top: 5px;		
+	overflow: auto;
+}
+#content-wrapper-twocols {
 	margin: 0 auto;	
 	background: #fff url(../images/content-bg.gif) repeat-y center top;
 	padding-bottom: 35px;
@@ -224,10 +234,21 @@ input.button {
 	letter-spacing: -.5px;
 	color: #7ba45b;
 	width: 400px;
-	
+
 	/* change the values of top and left to adjust the position */
 	top: 175px; left: 110px;		
 }
+
+#header p#flash{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Georgia, 'Times New Roman', Times, Serif;
+	font-weight: normal;
+	font-size: 17px;
+    top: 100px;
+}
+
 #header #header-image {
 	position: absolute;
 	background: url(../images/header-image.gif) no-repeat;
@@ -309,8 +330,8 @@ input.button {
 	background: transparent url(../images/right-tab.gif) no-repeat right top;	
 }
 
-/* login */
-#header p#login a{
+/* login register button */
+#header p#corner1 a{
 
     position: absolute;
     right: -100px;	top: 0px;
@@ -321,13 +342,29 @@ input.button {
 	text-transform: uppercase;
 }
 
-#header p#login a:hover,
-#header p#login a:active {
+#header p#corner1 a:hover,
+#header p#corner1 a:active {
 	border: none;
 	color: #111;
 	background: transparent;
 }
 
+#header p#corner2 a{
+    position: absolute;
+    right: -200px;	top: 0px;
+    margin: 10px 0 0 0;
+	padding: 0 15px 0 5px;
+	color: #666666;
+	font: bold 14px/40px 'Trebuchet MS', 'Helvetica Neue', Arial, Sans-Serif;
+	text-transform: uppercase;
+}
+
+#header p#corner2 a:hover,
+#header p#corner2 a:active {
+	border: none;
+	color: #111;
+	background: transparent;
+}
 /* main column */
 #main h2 {
 	font: normal 3.7em Georgia, 'Times New Roman', Times, Serif;
@@ -567,4 +604,27 @@ ol.commentlist {
 	clear:both; 
 	height:0; 
 	content: "."; 
+}
+
+/* message and alert classes*/
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+/* login form*/
+#login input[type="text"],
+#login input[type="password"] {
+    width: 300px;
+}
+#login input[type="submit"] {
+    width: 60px;
 }

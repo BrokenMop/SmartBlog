@@ -25,7 +25,7 @@ def index():
                 )
 
 
-def user():
+def login():
     """
     exposes:
     http://..../[app]/default/user/login
@@ -41,6 +41,11 @@ def user():
     to decorate functions that need access control
     """
     return dict(form=auth())
+
+
+def logout():
+    auth.logout()
+    redirect(URL('index'))
 
 
 @cache.action()
