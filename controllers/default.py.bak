@@ -10,19 +10,7 @@
 #########################################################################
 
 def index():
-    max_results = 10
-    page = 1
-    posts = db().select(db.post.ALL, limitby=((page-1) * max_results, page * max_results), orderby = "post.post_datetime DESC")
-
-    # response variables:
-    # posts label_posted_by  label_tags label_read_more label_comments
-
-    return dict(posts = posts,
-                label_posted_by = T('Posted by'),
-                label_tags = T('Tags'),
-                label_read_more = T('Read more'),
-                label_comments = T('Comments')
-                )
+    redirect(URL('post', 'index'))
 
 
 def login():
@@ -47,6 +35,9 @@ def logout():
     auth.logout()
     redirect(URL('index'))
 
+
+def register():
+    return dict(form=auth())
 
 @cache.action()
 def download():

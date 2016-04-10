@@ -29,9 +29,9 @@
                 <p id="corner2"><a href="{{=URL('default', 'logout')}}">Log out</a></p>
 
         {{else:}}
-                <p id="corner1"><a href="{{=URL('default', 'login')}}">Sign up</a></p>
+                <p id="corner1"><a href="{{=URL('default', 'register')}}">Sign up</a></p>
                 <p id="corner2"><a href="{{=URL('default', 'login')}}">Log in</a></p>
-         {{pass}}
+        {{pass}}
         
 
     </div>

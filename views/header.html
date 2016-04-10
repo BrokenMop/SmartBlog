@@ -8,8 +8,8 @@
         <p id="intro">Put your favorite slogan here...</p>
         <div  id="nav">
             <ul>
-                <li><a href="http://all-free-download.com/free-website-templates/">Home</a></li>
-                <li><a href="style.html">Style Demo</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{=URL('post', 'new')}}">New Post</a></li>
                 <li id="current"><a href="blog.html">Blog</a></li>
                 <li><a href="http://all-free-download.com/free-website-templates/">Services</a></li>
                 <li><a href="http://all-free-download.com/free-website-templates/">Support</a></li>
@@ -29,7 +29,7 @@
                 <p id="corner2"><a href="{{=URL('default', 'logout')}}">Log out</a></p>
 
         {{else:}}
-                <p id="corner1"><a href="{{=URL('default', 'login')}}">Sign up</a></p>
+                <p id="corner1"><a href="{{=URL('default', 'register')}}">Sign up</a></p>
                 <p id="corner2"><a href="{{=URL('default', 'login')}}">Log in</a></p>
         {{pass}}
         

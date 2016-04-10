@@ -48,6 +48,9 @@ def logout():
     redirect(URL('index'))
 
 
+def register():
+    return dict(form=auth())
+
 @cache.action()
 def download():
     """

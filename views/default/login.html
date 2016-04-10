@@ -5,34 +5,32 @@
 
 {{extend 'centeronecol.html'}}
 
-    <div id="login" class="grid_8 alpha">
-        {{=form.custom.begin}}
-        <p class="no-border">
-            <label for="auth_user_username">Username</label><br />
+<div id="login" class="grid_8 alpha">
+    {{=form.custom.begin}}
+    <p class="no-border">
+        <label for="auth_user_username">Username</label><br />
+        {{=form.custom.widget.username}}
+    </p>
+    <p class="no-border">
+        <label for="auth_user_password">Password</label><br />
+        {{=form.custom.widget.password}}
+    </p>
+    <p class="no-border">
+        <input class="button" type="submit" value="Submit" tabindex="3" />
+        <label for="auth_user_remember_me">Remember me for 30 days</label> {{=form.custom.widget.remember_me}}
+    </p>
+    <p class="no-border">
+    <div class="alert alert-danger">{{=response.flash or ''}}</div>
+</p>
+{{=form.custom.end}}
+</div>
+<div class="grid_8 omega">
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGU
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
+    ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
 
-            {{=form.custom.widget.username}}
-        </p>
-        <p class="no-border">
-            <label for="auth_user_password">Password</label><br />
-
-            {{=form.custom.widget.password}}
-        </p>
-        <p class="no-border">
-            <input class="button" type="submit" value="Submit" tabindex="3" />
-            <label for="auth_user_remember_me">Remember me for 30 days</label> {{=form.custom.widget.remember_me}}
-        </p>
-        <p class="no-border">
-            <div class="alert alert-danger">{{=response.flash or ''}}</div>
-        </p>
-        {{=form.custom.end}}
-    </div>
-    <div class="grid_8 omega">
-        ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGU
-ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
-ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
-ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
-ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
-ASDSAFNAIGHUAIGHAIUDSHGUIDHGUIHAFDIHGUFDHGS
-
-    </div>
+</div>
 </div>

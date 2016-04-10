@@ -1,0 +1,901 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'NoneType' object has no attribute 'username'"
+p3
+sS'layer'
+p4
+S'/home/jerryliu0228/web2py/applications/SmartBlog/views/default/index.html'
+p5
+sS'code'
+p6
+S'response.write(\'<!--[if HTML5]><![endif]-->\\n<!DOCTYPE html>\\n<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->\\n<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <!--<![endif]-->\\n<head>\\n  \', escape=False)\nresponse.files.insert(0,URL(\'static\',\'css/screen.css\'))\nresponse.write(\'\\n\\n  \', escape=False)\nresponse.write(\'<script type="text/javascript"><!--\\n    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).\\n    var w2p_ajax_confirm_message = "\', escape=False)\nresponse.write(T(\'Are you sure you want to delete this object?\'))\nresponse.write(\'";\\n    var w2p_ajax_disable_with_message = "\', escape=False)\nresponse.write(T(\'Working...\'))\nresponse.write(\'";\\n    var w2p_ajax_date_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'";\\n    var w2p_ajax_datetime_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'";\\n    var ajax_error_500 = \\\'\', escape=False)\nresponse.write(T.M(\'An error occured, please [[reload %s]] the page\') % URL(args=request.args, vars=request.get_vars))\nresponse.write("\'\\n    //--></script>\\n", escape=False)\nresponse.files.insert(0,URL(\'static\',\'js/jquery.js\'))\nresponse.files.insert(1,URL(\'static\',\'css/calendar.css\'))\nresponse.files.insert(2,URL(\'static\',\'js/calendar.js\'))\nresponse.files.insert(3,URL(\'static\',\'js/web2py.js\'))\nresponse.include_meta()\nresponse.include_files()\nresponse.write(\'\\n\', escape=False)\nresponse.write(\'\\n\\n\\n<title>$$APLICATION NAME$$</title>\\n\\n<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />\\n</head>\\n <body>\\n        \', escape=False)\nresponse.write(\'<!-- TRANS  Log in -->\\n<!-- TRANS  Log out -->\\n<!-- TRANS  Sign up -->\\n\\n<div id="header-wrap">\\n    <div id="header" class="container_16">\\n        <h1 id="logo-text"><a href="http://all-free-download.com/free-website-templates/">Keep It Simple</a></h1>\\n        <p id="intro">Put your favorite slogan here...</p>\\n        <div  id="nav">\\n            <ul>\\n                <li><a href="/">Home</a></li>\\n                <li><a href="\', escape=False)\nresponse.write(URL(\'post\', \'new\'))\nresponse.write(\'">New Post</a></li>\\n                <li id="current"><a href="blog.html">Blog</a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">Services</a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">Support</a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">About</a></li>\\n            </ul>\\n        </div>\\n        <div id="header-image"></div>\\n        <form id="quick-search" action="#" method="get" >\\n            <p>\\n                <label for="qsearch">Search:</label>\\n                <input class="tbox" id="qsearch" type="text" name="qsearch" value="Search..." title="Start typing and hit ENTER" />\\n                <input class="btn" alt="Search" type="image" name="searchsubmit" title="Search" src="\', escape=False)\nresponse.write(URL(\'static\', \'images/search.gif\'))\nresponse.write(\'" />\\n            </p>\\n        </form>\\n        \', escape=False)\nif auth.user:\n    response.write(\'\\n                <p id="corner1"><a href="\', escape=False)\n    response.write(URL(\'default\', \'login\'))\n    response.write(\'">\', escape=False)\n    response.write(auth.user.username)\n    response.write(\'</a></p>\\n                <p id="corner2"><a href="\', escape=False)\n    response.write(URL(\'default\', \'logout\'))\n    response.write(\'">Log out</a></p>\\n\\n        \', escape=False)\nelse:\n    response.write(\'\\n                <p id="corner1"><a href="\', escape=False)\n    response.write(URL(\'default\', \'register\'))\n    response.write(\'">Sign up</a></p>\\n                <p id="corner2"><a href="\', escape=False)\n    response.write(URL(\'default\', \'login\'))\n    response.write(\'">Log in</a></p>\\n        \', escape=False)\n    pass\nresponse.write(\'\\n        \\n\\n    </div>\\n</div>\\n\', escape=False)\nresponse.write(\'\\n        <div id="content-outer" >\\n\\n            \', escape=False)\nresponse.write(\'\\n<div id="content-wrapper-twocols"  class="container_16">\\n    <div id="main" class="grid_12 alpha">\\n        \', escape=False)\nresponse.write(\'\\n\\n\', escape=False)\nfor post in posts:\n    response.write(\'\\n\\n<!-- post title -->\\n<!-- LINK NEED TO COMPLETE -->\\n<h2><a href="http://all-free-download.com/free-website-templates/">\', escape=False)\n    response.write(post.title)\n    response.write(\'</a></h4>\\n\\n<!-- post info(time, author, tags ...) -->\\n<!-- LINKS NEED TO COMPLETE -->\\n<!-- TAGS NEED TO IMPLEMENTED -->\\n\', escape=False)\n    if post.if_display_author:\n        response.write(\'\\n<p class="post-info">\', escape=False)\n        response.write(label_posted_by)\n        response.write(\' <a href="http://all-free-download.com/free-website-templates/">\', escape=False)\n        response.write(post.author.username)\n        response.write(\'</a> |&nbsp;\\n    \', escape=False)\n        response.write(post.post_datetime)\n        response.write(\' | \', escape=False)\n        response.write(label_tags)\n        response.write(\' <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>\\n\', escape=False)\n    else:\n        response.write(\'\\n<p class="post-info">\', escape=False)\n        response.write(post.post_datetime)\n        response.write(\' | \', escape=False)\n        response.write(label_tags)\n        response.write(\' <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n<a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n<a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;\\n<a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>\\n\', escape=False)\n        pass\n    response.write(\'\\n\\n<!-- post body -->\\n<p>\', escape=False)\n    response.write(XML(post.body))\n    response.write(\'</p>\\n\\n<!-- post footer(read more, commets) -->\\n<!-- READ MORE NEED TO IMPLEMENTED -->\\n<!-- COMMENTS NEED TO IMPLEMENTED -->\\n<p class="postmeta"> <a href="http://all-free-download.com/free-website-templates/" class="readmore">\', escape=False)\n    response.write(label_read_more)\n    response.write(\'</a> | <a href="http://all-free-download.com/free-website-templates/" class="comments">\', escape=False)\n    response.write(label_comments)\n    response.write(\' (7)</a></p>\\n\', escape=False)\n    pass\nresponse.write(\'\\n\\n<!-- PAGE COUNT NEED TO IMPLEMENTED -->\\n\', escape=False)\nresponse.write(\'\\n    </div>\\n    <div class="grid_4 omega">\\n    \', escape=False)\nresponse.write(\'<div class="sidemenu">\\n    <h3>Sidebar Menu</h3>\\n    <ul>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Home</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">TemplateInfo</a></li>\\n        <li><a href="style.html">Style Demo</a></li>\\n        <li><a href="blog.html">Blog</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">More Free Templates</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Premium Templates</a></li>\\n    </ul>\\n</div>\\n<div class="sidemenu">\\n    <h3>Links</h3>\\n    <ul>\\n        <li><a href="http://all-free-download.com/free-website-templates/">PDPhoto</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Alistapart</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">960 Grid System</a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">FreePhotos.se</a></li>\\n    </ul>\\n</div>\\n<div class="sidemenu">\\n    <h3>Sponsors</h3>\\n    <ul>\\n        <li><a href="http://all-free-download.com/free-website-templates/">ThemeForest <br />\\n                <span>Your Choice for Site Templates, Wordpress, Joomla and CMS Themes</span></a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">4templates <br />\\n                <span>Low Cost Hi-Quality Templates</span></a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">TemplateMonster <br />\\n                <span>Delivering the Best Templates on the Net!</span></a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Text Link Ads <br />\\n                <span>Monetized your website</span></a></li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Fotolia <br />\\n                <span>Free stock images or from $1</span></a> </li>\\n        <li><a href="http://all-free-download.com/free-website-templates/">Dreamhost <br />\\n                <span>Premium webhosting</span></a></li>\\n    </ul>\\n</div>\\n<h3>Wise Words</h3>\\n<p> &quot;Beauty of style and harmony and grace and good rhythm depends on simplicity.&quot; </p>\\n<p class="align-right"> - Plato</p>\\n<h3>Support Styleshout</h3>\\n<p> If you are interested in supporting my work and would like to contribute, you are welcome to make a small donation through the donate link on my website - it will be a great help and will surely be appreciated.</p>\\n\', escape=False)\nresponse.write(\'\\n    </div>\\n</div>\\n\', escape=False)\nresponse.write(\'\\n            </div>\\n        </div>\\n        \', escape=False)\nresponse.write(\'<div id="footer-wrapper" class="container_16">\\n    <div id="footer-content">\\n        <div class="grid_8">\\n            <h3>Resource Links</h3>\\n            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. <a href="http://all-free-download.com/free-website-templates/">Read more...</a> </p>\\n            <ul class="footer-list">\\n                <li><a href="http://all-free-download.com/free-website-templates/">ThemeForest - <span>Your Choice for Site Templates &amp; Wordpress Themes</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">CSSMania - <span>CSS Design Showcase</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">AListApart - <span>For People Who Make Websites</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">PSDTuts.com - <span>Photoshop Tutorials And Links</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">PDPhoto.org - <span>Public Domain Photos</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">FreePhotos.se - <span>Free &amp; Public Domain Photos</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">Fotolia - <span>Free stock images or from $1</span></a></li>\\n                <li><a href="http://all-free-download.com/free-website-templates/">4templates - <span>Low Cost Hi-Quality Templates</span></a></li>\\n            </ul>\\n        </div>\\n        <div class="grid_8">\\n            <h3>Image Gallery </h3>\\n            <p class="thumbs"> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/thumb.jpg" width="40" height="40" alt="" /></a> </p>\\n            <h3>About</h3>\\n            <p> <a href="http://all-free-download.com/free-website-templates/"><img src="images/gravatar.jpg" width="40" height="40" alt="" class="float-left" /></a> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam.</p>\\n            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="http://all-free-download.com/free-website-templates/">Learn more...</a></p>\\n        </div>\\n    </div>\\n    <div id="footer-bottom">\\n        <p class="bottom-left"> &nbsp; &copy;2008 All your copyright info here &nbsp; &nbsp; Design by : <a href="http://www.styleshout.com/">styleshout</a> </p>\\n        <p class="bottom-right" > <a href="http://all-free-download.com/free-website-templates/">Home</a> | <a href="http://all-free-download.com/free-website-templates/">Sitemap</a> | <a href="http://all-free-download.com/free-website-templates/">RSS Feed</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://validator.w3.org/check/referer">XHTML</a> </p>\\n    </div>\\n</div>\\n<div align=center>This template  downloaded form <a href=\\\'http://all-free-download.com/free-website-templates/\\\'>free website templates</a></div></body>\\n\', escape=False)\nresponse.write("\\n</body>\\n\\n<script>\\n    $(document).ready(function() {\\n        $(\'.alert:empty\').hide();\\n    });\\n\\n</script>\\n\\n</html>\\n", escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.AttributeError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.AttributeError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.AttributeError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.AttributeError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.AttributeError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.AttributeError object>'
+p23
+sS'args'
+p24
+S'("\'NoneType\' object has no attribute \'username\'",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.AttributeError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.AttributeError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.AttributeError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.AttributeError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.AttributeError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.AttributeError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.AttributeError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.AttributeError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.AttributeError object>'
+p47
+sS'__doc__'
+p48
+S"'Attribute not found.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.AttributeError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"'NoneType' object has no attribute 'username'"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\x0f\\\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>SmartBlog</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90-c28f1075-fccd-4534-924a-8d1367cd9b1d<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_cms</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90-82c1bc18-4e04-4105-b30c-8cc2a131871d<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_smartblog</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">sessionid</td><td style="vertical-align:top;">:</td><td><div>dttcawekok611odg1uhqp6f8o9hxwclz<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_LENGTH</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_TYPE</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTPS</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>sessionid=dttcawekok611odg1uhqp6f8o9hxwclz; session_id_cms=104.32.222.90-82c1bc18-4e04-4105-b30c-8cc2a131871d; session_id_admin=104.32.222.90-c28f1075-fccd-4534-924a-8d1367cd9b1d; session_id_smartblog=104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_FORWARDED_FOR</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_REAL_IP</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>10.169.53.174</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>57714</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/jerryliu0228/web2py/applications/CMS/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/SmartBlog/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/dinna/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_length</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_type</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>sessionid=dttcawekok611odg1uhqp6f8o9hxwclz; session_id_cms=104.32.222.90-82c1bc18-4e04-4105-b30c-8cc2a131871d; session_id_admin=104.32.222.90-c28f1075-fccd-4534-924a-8d1367cd9b1d; session_id_smartblog=104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_forwarded_for</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_real_ip</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">https</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td><div>glenn-liveweb8</div></td></tr><tr><td><div>localhost</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>10.169.53.174</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>57714</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.9.12-stable+timestamp.2015.01.17.06.11.03</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7fe9d6c5c310&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7fe9e0d7edb0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7fe9d6c5c310&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7fe9e0d7edb0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py/applications/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>index</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/jerryliu0228/web2py/applications/CMS/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/SmartBlog/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/dinna/&#x27;, &#x27;/home/jerryliu0228/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>jerryliu0228.pythonanywhere.com</div></td></tr><tr><td><div>glenn-liveweb8</div></td></tr><tr><td><div>localhost</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.9.12-stable+timestamp.2015.01.17.06.11.03</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_sheduler</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 4, 10, 1, 44, 16, 818011)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/SmartBlog/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 4, 10, 1, 44, 16, 818032)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uuid</td><td style="vertical-align:top;">:</td><td><div>SmartBlog/104.32.222.90.2016-04-10.01-44-16.743960b1-8752-4324-887c-f4989006e69b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7fe9c4ff7190&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/jerryliu0228/web2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ADMIN_GROUP': 'admin', 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AUTUOR_GROUP': 'author', 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7fe9c50eb430, file "/...ions/SmartBlog/views/default/index.html", line 1>'
+p69
+ssS'lnum'
+p70
+I224
+sS'lines'
+p71
+(dp72
+I224
+S'        exec ccode in environment'
+p73
+sI225
+S'    except HTTP:'
+p74
+sI226
+S'        raise'
+p75
+sI227
+S'    except RestrictedError:'
+p76
+sI228
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p77
+sI219
+S'    try:'
+p78
+sI220
+S'        if isinstance(code, types.CodeType):'
+p79
+sI221
+S'            ccode = code'
+p80
+sI222
+S'        else:'
+p81
+sI223
+S'            ccode = compile2(code, layer)'
+p82
+ssS'call'
+p83
+S'(code=\'response.write(\\\'<!--[if HTML5]><![endif]-->\\\\n<!D...    });\\\\n\\\\n</script>\\\\n\\\\n</html>\\\\n", escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'ADMIN_GROUP\': \'admin\', \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AUTUOR_GROUP\': \'author\', \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, ...}, layer=\'/home/jerryliu0228/web2py/applications/SmartBlog/views/default/index.html\')'
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/jerryliu0228/web2py/applications/SmartBlog/views/default/index.html'
+p88
+sg64
+(dp89
+sg70
+I65
+sg71
+(dp90
+I64
+S'        response.write(\' <a href="http://all-free-download.com/free-website-templates/">\', escape=False)'
+p91
+sI65
+S'        response.write(post.author.username)'
+p92
+sI66
+S"        response.write('</a> |&nbsp;\\n    ', escape=False)"
+p93
+sI67
+S'        response.write(post.post_datetime)'
+p94
+sI68
+S"        response.write(' | ', escape=False)"
+p95
+sI69
+S'        response.write(label_tags)'
+p96
+sI70
+S'        response.write(\' <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;\\n    <a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>\\n\', escape=False)'
+p97
+sI71
+S'    else:'
+p98
+sI72
+S'        response.write(\'\\n<p class="post-info">\', escape=False)'
+p99
+sI73
+S'        response.write(post.post_datetime)'
+p100
+sI74
+S"        response.write(' | ', escape=False)"
+p101
+sI75
+S'        response.write(label_tags)'
+p102
+sI56
+S"response.write('\\n\\n', escape=False)"
+p103
+sI57
+S'for post in posts:'
+p104
+sI58
+S'    response.write(\'\\n\\n<!-- post title -->\\n<!-- LINK NEED TO COMPLETE -->\\n<h2><a href="http://all-free-download.com/free-website-templates/">\', escape=False)'
+p105
+sI59
+S'    response.write(post.title)'
+p106
+sI60
+S"    response.write('</a></h4>\\n\\n<!-- post info(time, author, tags ...) -->\\n<!-- LINKS NEED TO COMPLETE -->\\n<!-- TAGS NEED TO IMPLEMENTED -->\\n', escape=False)"
+p107
+sI61
+S'    if post.if_display_author:'
+p108
+sI62
+S'        response.write(\'\\n<p class="post-info">\', escape=False)'
+p109
+sI63
+S'        response.write(label_posted_by)'
+p110
+ssg83
+S'()'
+p111
+sg85
+S'<module>'
+p112
+sasS'pyver'
+p113
+S'Python 2.7.6: /usr/local/bin/uwsgi (prefix: /usr)'
+p114
+sS'session'
+p115
+g57
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp116
+sS'etype'
+p117
+S"<type 'exceptions.AttributeError'>"
+p118
+sS'date'
+p119
+S'Sun Apr 10 01:44:16 2016'
+p120
+sS'response'
+p121
+g57
+(S's\xe43\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7fe9d6c7b308&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_smartblog</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>/SmartBlog/static/js/jquery.js</div></td></tr><tr><td><div>/SmartBlog/static/css/calendar.css</div></td></tr><tr><td><div>/SmartBlog/static/js/calendar.js</div></td></tr><tr><td><div>/SmartBlog/static/js/web2py.js</div></td></tr><tr><td><div>/SmartBlog/static/css/screen.css</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="brand" href="http://www.web2py.com/"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Home</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/SmartBlog/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div><span class="highlighted">web2py</span></div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>My Sites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>This App</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/SmartBlog</div></td></tr><tr><td><div>[(&lt;lazyT &#x27;Controller&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/controllers/default.py&#x27;), (&lt;lazyT &#x27;View&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/views/default/index.html&#x27;), (&lt;lazyT &#x27;Layout&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/views/layout.html&#x27;), (&lt;lazyT &#x27;Stylesheet&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/static/css/web2py.css&#x27;), (&lt;lazyT &#x27;DB Model&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/models/db.py&#x27;), (&lt;lazyT &#x27;Menu Model&#x27;&gt;, False, &#x27;/admin/default/edit/SmartBlog/models/menu.py&#x27;), (&lt;lazyT &#x27;Database&#x27;&gt;, False, &#x27;/SmartBlog/appadmin/index&#x27;), (&lt;lazyT &#x27;Errors&#x27;&gt;, False, &#x27;/admin/default/errors/SmartBlog&#x27;), (&lt;lazyT &#x27;About&#x27;&gt;, False, &#x27;/admin/default/about/SmartBlog&#x27;)]</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com</div></td></tr><tr><td><div>[(&lt;lazyT &#x27;Download&#x27;&gt;, False, &#x27;http://www.web2py.com/examples/default/download&#x27;), (&lt;lazyT &#x27;Support&#x27;&gt;, False, &#x27;http://www.web2py.com/examples/default/support&#x27;), (&lt;lazyT &#x27;Demo&#x27;&gt;, False, &#x27;http://web2py.com/demo_admin&#x27;), (&lt;lazyT &#x27;Quick Examples&#x27;&gt;, False, &#x27;http://web2py.com/examples/default/examples&#x27;), (&lt;lazyT &#x27;FAQ&#x27;&gt;, False, &#x27;http://web2py.com/AlterEgo&#x27;), (&lt;lazyT &#x27;Videos&#x27;&gt;, False, &#x27;http://www.web2py.com/examples/default/videos/&#x27;), (&lt;lazyT &#x27;Free Applications&#x27;&gt;, False, &#x27;http://web2py.com/appliances&#x27;), (&lt;lazyT &#x27;Plugins&#x27;&gt;, False, &#x27;http://web2py.com/plugins&#x27;), (&lt;lazyT &#x27;Layouts&#x27;&gt;, False, &#x27;http://web2py.com/layouts&#x27;), (&lt;lazyT &#x27;Recipes&#x27;&gt;, False, &#x27;http://web2pyslices.com/&#x27;), (&lt;lazyT &#x27;Semantic&#x27;&gt;, False, &#x27;http://web2py.com/semantic&#x27;)]</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr><tr><td><div>[(&lt;lazyT &#x27;Preface&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/00&#x27;), (&lt;lazyT &#x27;Introduction&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/01&#x27;), (&lt;lazyT &#x27;Python&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/02&#x27;), (&lt;lazyT &#x27;Overview&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/03&#x27;), (&lt;lazyT &#x27;The Core&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/04&#x27;), (&lt;lazyT &#x27;The Views&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/05&#x27;), (&lt;lazyT &#x27;Database&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/06&#x27;), (&lt;lazyT &#x27;Forms and Validators&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/07&#x27;), (&lt;lazyT &#x27;Email and SMS&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/08&#x27;), (&lt;lazyT &#x27;Access Control&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/09&#x27;), (&lt;lazyT &#x27;Services&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/10&#x27;), (&lt;lazyT &#x27;Ajax Recipes&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/11&#x27;), (&lt;lazyT &#x27;Components and Plugins&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/12&#x27;), (&lt;lazyT &#x27;Deployment Recipes&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/13&#x27;), (&lt;lazyT &#x27;Other Recipes&#x27;&gt;, False, &#x27;http://www.web2py.com/book/default/chapter/14&#x27;), (&lt;lazyT &#x27;Buy this book&#x27;&gt;, False, &#x27;http://stores.lulu.com/web2py&#x27;)]</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Community</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div>[(&lt;lazyT &#x27;Groups&#x27;&gt;, False, &#x27;http://www.web2py.com/examples/default/usergroups&#x27;), (&lt;lazyT &#x27;Twitter&#x27;&gt;, False, &#x27;http://twitter.com/web2py&#x27;), (&lt;lazyT &#x27;Live Chat&#x27;&gt;, False, &#x27;http://webchat.freenode.net/?channels=web2py&#x27;)]</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugins</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div>[(&#x27;plugin_wiki&#x27;, False, &#x27;http://web2py.com/examples/default/download&#x27;), (&lt;lazyT &#x27;Other Plugins&#x27;&gt;, False, &#x27;http://web2py.com/plugins&#x27;), (&lt;lazyT &#x27;Layout Plugins&#x27;&gt;, False, &#x27;http://web2py.com/layouts&#x27;)]</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div>web2py, python, framework</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/index/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_key</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_smartblog</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;/home/jerryliu0228/web2py/applications/SmartBlog/sessions/118/0ca/104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b&#x27;, mode &#x27;rb+&#x27; at 0x7fe9c526e6f0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/jerryliu0228/web2py/applications/SmartBlog/sessions/104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>fc3a686970652f2d96037074d0fa3afa</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>104.32.222.90-f2ddff39-269d-48b4-8209-f306475b878b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_smartblog</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>SmartBlog</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Smartblog</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/index.html</div></td></tr></table></div>'
+tRp122
+sS'locals'
+p123
+(dp124
+S'Service'
+p125
+S"<class 'gluon.tools.Service'>"
+p126
+sS'IFRAME'
+p127
+S"<class 'gluon.html.IFRAME'>"
+p128
+sS'OBJECT'
+p129
+S"<class 'gluon.html.OBJECT'>"
+p130
+sS'SQLDB'
+p131
+S"<class 'gluon.dal.base.DAL'>"
+p132
+sg115
+S"<Storage {'_formkey[login]': ['377150c6-2e2d-404...-c78f-46d5-8747-92cd4c6bd94a'], '_secure': True}>"
+p133
+sS'LINK'
+p134
+S"<class 'gluon.html.LINK'>"
+p135
+sS'BR'
+p136
+S"<class 'gluon.html.BR'>"
+p137
+sS'local_import'
+p138
+S'<function <lambda>>'
+p139
+sS'OPTGROUP'
+p140
+S"<class 'gluon.html.OPTGROUP'>"
+p141
+sS'label_comments'
+p142
+S"<lazyT 'Comments'>"
+p143
+sS'__package__'
+p144
+S'None'
+p145
+sS'OPTION'
+p146
+S"<class 'gluon.html.OPTION'>"
+p147
+sS'PRE'
+p148
+S"<class 'gluon.html.PRE'>"
+p149
+sS'IS_INT_IN_RANGE'
+p150
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p151
+sS'IS_LOWER'
+p152
+S"<class 'gluon.validators.IS_LOWER'>"
+p153
+sS'IS_STRONG'
+p154
+S"<class 'gluon.validators.IS_STRONG'>"
+p155
+sS'cache'
+p156
+S'<gluon.cache.Cache object>'
+p157
+sS'IS_IN_DB'
+p158
+S"<class 'gluon.validators.IS_IN_DB'>"
+p159
+sS'TAG'
+p160
+S'<gluon.html.__TAG__ object>'
+p161
+sS'SQLField'
+p162
+S"<class 'gluon.dal.objects.Field'>"
+p163
+sS'mail'
+p164
+S'<gluon.tools.Mail object>'
+p165
+sS'BODY'
+p166
+S"<class 'gluon.html.BODY'>"
+p167
+sS'IS_DATE_IN_RANGE'
+p168
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p169
+sS'random'
+p170
+S"<module 'random' from '/usr/lib/python2.7/random.pyc'>"
+p171
+sS'string'
+p172
+S"<module 'string' from '/usr/lib/python2.7/string.pyc'>"
+p173
+sS'URL'
+p174
+S'<function URL>'
+p175
+sS'__file__'
+p176
+S"'/home/jerryliu0228/web2py/applications/SmartBlog/views/default/index.html'"
+p177
+sS'db'
+p178
+S'<DAL uri="sqlite://storage.sqlite">'
+p179
+sS'auth'
+p180
+S'<gluon.tools.Auth object>'
+p181
+sS'P'
+S"<class 'gluon.html.P'>"
+p182
+sS'TFOOT'
+p183
+S"<class 'gluon.html.TFOOT'>"
+p184
+sS'XHTML'
+p185
+S"<class 'gluon.html.XHTML'>"
+p186
+sS'datetime'
+p187
+S"<module 'datetime' from '/usr/lib/python2.7/lib-dynload/datetime.x86_64-linux-gnu.so'>"
+p188
+sS'TEST_UNICODE_RANGE'
+p189
+S'[19968, 19969, 19970, 19971, 19972, 19973, 19974, 19975, 19976, 19977, 19978, 19979, 19980, 19981, 19982, 19983, 19984, 19985, 19986, 19987, ...]'
+p190
+sS'ON'
+p191
+S'True'
+p192
+sS'OL'
+p193
+S"<class 'gluon.html.OL'>"
+p194
+sS'TEXTAREA'
+p195
+S"<class 'gluon.html.TEXTAREA'>"
+p196
+sS'MENU'
+p197
+S"<class 'gluon.html.MENU'>"
+p198
+sS'posts'
+p199
+S'<Rows (10)>'
+p200
+sS'ADMIN_GROUP'
+p201
+S"'admin'"
+p202
+sS'IS_IMAGE'
+p203
+S"<class 'gluon.validators.IS_IMAGE'>"
+p204
+sS'VISITOR_GROUP'
+p205
+S"'visitor'"
+p206
+sS'populate_category'
+p207
+S'<function populate_category>'
+p208
+sS'EM'
+p209
+S"<class 'gluon.html.EM'>"
+p210
+sS'CODE'
+p211
+S"<class 'gluon.html.CODE'>"
+p212
+sS'HTTP'
+p213
+S"<class 'gluon.http.HTTP'>"
+p214
+sS'HR'
+p215
+S"<class 'gluon.html.HR'>"
+p216
+sS'IS_DATETIME'
+p217
+S"<class 'gluon.validators.IS_DATETIME'>"
+p218
+sS'STYLE'
+p219
+S"<class 'gluon.html.STYLE'>"
+p220
+sS'LABEL'
+p221
+S"<class 'gluon.html.LABEL'>"
+p222
+sS'CLEANUP'
+p223
+S"<class 'gluon.validators.CLEANUP'>"
+p224
+sS'plugins'
+p225
+S'<gluon.tools.PluginManager object>'
+p226
+sS'SELECT'
+p227
+S"<class 'gluon.html.SELECT'>"
+p228
+sS'use_janrain'
+p229
+S'<function use_janrain>'
+p230
+sS'CENTER'
+p231
+S"<class 'gluon.html.CENTER'>"
+p232
+sS'Auth'
+p233
+S"<class 'gluon.tools.Auth'>"
+p234
+sS'DEVELOPMENT_MENU'
+p235
+g192
+sS'IS_EQUAL_TO'
+p236
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p237
+sS'HTML'
+p238
+S"<class 'gluon.html.HTML'>"
+p239
+sS'SQLFORM'
+p240
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p241
+sS'LOAD'
+p242
+S'<function LOAD>'
+p243
+sS'redirect'
+p244
+S'<function redirect>'
+p245
+sS'get_random_ustring'
+p246
+S'<function get_random_ustring>'
+p247
+sS'FIELDSET'
+p248
+S"<class 'gluon.html.FIELDSET'>"
+p249
+sS'clean_db'
+p250
+S'<function clean_db>'
+p251
+sS'embed64'
+p252
+S'<function embed64>'
+p253
+sS'IS_LIST_OF'
+p254
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p255
+sS'label_posted_by'
+p256
+S"<lazyT 'Posted by'>"
+p257
+sS'INPUT'
+p258
+S"<class 'gluon.html.INPUT'>"
+p259
+sS'EMBED'
+p260
+S"<class 'gluon.html.EMBED'>"
+p261
+sS'_'
+S'<function _>'
+p262
+sS'H2'
+p263
+S"<class 'gluon.html.H2'>"
+p264
+sS'H3'
+p265
+S"<class 'gluon.html.H3'>"
+p266
+sS'BUTTON'
+p267
+S"<class 'gluon.html.BUTTON'>"
+p268
+sS'H1'
+p269
+S"<class 'gluon.html.H1'>"
+p270
+sS'H6'
+p271
+S"<class 'gluon.html.H6'>"
+p272
+sS'H4'
+p273
+S"<class 'gluon.html.H4'>"
+p274
+sS'H5'
+p275
+S"<class 'gluon.html.H5'>"
+p276
+sS'UL'
+p277
+S"<class 'gluon.html.UL'>"
+p278
+sS'IS_UPPER'
+p279
+S"<class 'gluon.validators.IS_UPPER'>"
+p280
+sS'xmlescape'
+p281
+S'<function xmlescape>'
+p282
+sS'IS_TIME'
+p283
+S"<class 'gluon.validators.IS_TIME'>"
+p284
+sS'TEST_ASCII_STRING'
+p285
+S'\'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\\\'()*+,-./:;<=>?@[\\\\]^_`{|}~\''
+p286
+sS'TITLE'
+p287
+S"<class 'gluon.html.TITLE'>"
+p288
+sS'CRYPT'
+p289
+S"<class 'gluon.validators.CRYPT'>"
+p290
+sS'get_random_string'
+p291
+S'<function get_random_string>'
+p292
+sS'IS_EMPTY_OR'
+p293
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p294
+sS'MARKMIN'
+p295
+S"<class 'gluon.html.MARKMIN'>"
+p296
+sS'__name__'
+p297
+S"'__restricted__'"
+p298
+sS'AUTUOR_GROUP'
+p299
+S"'author'"
+p300
+sS'STRONG'
+p301
+S"<class 'gluon.html.STRONG'>"
+p302
+sS'label_read_more'
+p303
+S"<lazyT 'Read more'>"
+p304
+sS'COL'
+p305
+S"<class 'gluon.html.COL'>"
+p306
+sS'service'
+p307
+S'<gluon.tools.Service object>'
+p308
+sS'SCRIPT'
+p309
+S"<class 'gluon.html.SCRIPT'>"
+p310
+sS'getAllCategories'
+p311
+S'<function getAllCategories>'
+p312
+sS'TABLE'
+p313
+S"<class 'gluon.html.TABLE'>"
+p314
+sS'IS_IPV4'
+p315
+S"<class 'gluon.validators.IS_IPV4'>"
+p316
+sS'IS_LENGTH'
+p317
+S"<class 'gluon.validators.IS_LENGTH'>"
+p318
+sS'IS_IPV6'
+p319
+S"<class 'gluon.validators.IS_IPV6'>"
+p320
+sS'XML'
+p321
+S"<class 'gluon.html.XML'>"
+p322
+sS'B'
+S"<class 'gluon.html.B'>"
+p323
+sS'IMG'
+p324
+S"<class 'gluon.html.IMG'>"
+p325
+sS'SQLTABLE'
+p326
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p327
+sS'IS_MATCH'
+p328
+S"<class 'gluon.validators.IS_MATCH'>"
+p329
+sS'IS_ALPHANUMERIC'
+p330
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p331
+sS'init_db'
+p332
+S'<function init_db>'
+p333
+sS'SPAN'
+p334
+S"<class 'gluon.html.SPAN'>"
+p335
+sS'IS_JSON'
+p336
+S"<class 'gluon.validators.IS_JSON'>"
+p337
+sS'IS_IPADDRESS'
+p338
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p339
+sS'IS_SLUG'
+p340
+S"<class 'gluon.validators.IS_SLUG'>"
+p341
+sS'assign_group'
+p342
+S'<function assign_group>'
+p343
+sS'META'
+p344
+S"<class 'gluon.html.META'>"
+p345
+sS'populate_user'
+p346
+S'<function populate_user>'
+p347
+sS'getAllCategoriesWithCount'
+p348
+S'<function getAllCategoriesWithCount>'
+p349
+sS'IS_DATE'
+p350
+S"<class 'gluon.validators.IS_DATE'>"
+p351
+sS'IS_EMAIL'
+p352
+S"<class 'gluon.validators.IS_EMAIL'>"
+p353
+sS'populate_post'
+p354
+S'<function populate_post>'
+p355
+sS'IS_NOT_EMPTY'
+p356
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p357
+sS'IS_FLOAT_IN_RANGE'
+p358
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p359
+sS'BEAUTIFY'
+p360
+S"<class 'gluon.html.BEAUTIFY'>"
+p361
+sS'TBODY'
+p362
+S"<class 'gluon.html.TBODY'>"
+p363
+sS'CAT'
+p364
+S"<class 'gluon.html.CAT'>"
+p365
+sS'Field'
+p366
+S"<class 'gluon.dal.objects.Field'>"
+p367
+sS'IS_LIST_OF_EMAILS'
+p368
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p369
+sS'label_tags'
+p370
+S"<lazyT 'Tags'>"
+p371
+sS'DIV'
+p372
+S"<class 'gluon.html.DIV'>"
+p373
+sS'LEGEND'
+p374
+S"<class 'gluon.html.LEGEND'>"
+p375
+sS'randint'
+p376
+S'<bound method Random.randint of <random.Random object>>'
+p377
+sS'DAL'
+p378
+S"<class 'gluon.dal.base.DAL'>"
+p379
+sS'ASSIGNJS'
+p380
+S'<function ASSIGNJS>'
+p381
+sS'TR'
+p382
+S"<class 'gluon.html.TR'>"
+p383
+sS'LI'
+p384
+S"<class 'gluon.html.LI'>"
+p385
+sS'post'
+p386
+S"<Row {'body': '\\xe6\\xb0\\xb4\\xe7\\x94\\xb5\\xe8\\xb4\\...6, 4, 10, 1, 43, 16), 'if_display_author': True}>"
+p387
+sS'TH'
+p388
+S"<class 'gluon.html.TH'>"
+p389
+sS'TD'
+p390
+S"<class 'gluon.html.TD'>"
+p391
+sS'PluginManager'
+p392
+S"<class 'gluon.tools.PluginManager'>"
+p393
+sS'IS_URL'
+p394
+S"<class 'gluon.validators.IS_URL'>"
+p395
+sS'A'
+S"<class 'gluon.html.A'>"
+p396
+sS'HEAD'
+p397
+S"<class 'gluon.html.HEAD'>"
+p398
+sS'IS_DATETIME_IN_RANGE'
+p399
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p400
+sS'FORM'
+p401
+S"<class 'gluon.html.FORM'>"
+p402
+sS'I'
+S"<class 'gluon.html.I'>"
+p403
+sS'__builtins__'
+p404
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p405
+sS'IS_NOT_IN_DB'
+p406
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p407
+sg121
+S"<Storage {'body': <cStringIO.StringO object at 0...t 0x7fe9c7c1cde8>, 'view': 'default/index.html'}>"
+p408
+sS'THEAD'
+p409
+S"<class 'gluon.html.THEAD'>"
+p410
+sS'ANY_OF'
+p411
+S"<class 'gluon.validators.ANY_OF'>"
+p412
+sS'IS_NULL_OR'
+p413
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p414
+sS'COLGROUP'
+p415
+S"<class 'gluon.html.COLGROUP'>"
+p416
+sg56
+S"<Storage {'_vars': None, 'function': 'index', 'c...me/jerryliu0228/web2py/applications/SmartBlog/'}>"
+p417
+sS'IS_EXPR'
+p418
+S"<class 'gluon.validators.IS_EXPR'>"
+p419
+sS'T'
+S'<gluon.languages.translator object>'
+p420
+sS'IS_IN_SET'
+p421
+S"<class 'gluon.validators.IS_IN_SET'>"
+p422
+sS'IS_UPLOAD_FILENAME'
+p423
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p424
+sS'TT'
+p425
+S"<class 'gluon.html.TT'>"
+p426
+sS'IS_DECIMAL_IN_RANGE'
+p427
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p428
+sssS'traceback'
+p429
+S'Traceback (most recent call last):\n  File "/home/jerryliu0228/web2py/gluon/restricted.py", line 224, in restricted\n    exec ccode in environment\n  File "/home/jerryliu0228/web2py/applications/SmartBlog/views/default/index.html", line 65, in <module>\nAttributeError: \'NoneType\' object has no attribute \'username\'\n'
+p430
+s.
