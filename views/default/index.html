@@ -11,15 +11,21 @@
 <!-- TAGS NEED TO IMPLEMENTED -->
 {{if post.if_display_author:}}
 <p class="post-info">{{=label_posted_by}} <a href="http://all-free-download.com/free-website-templates/">{{=post.author.username}}</a> |&nbsp;
-    {{=post.post_datetime}} | {{=label_tags}} <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
-    <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
-    <a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;
-    <a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>
+    {{=getLocalTimeStr(post.post_datetime)}} | {{=label_tags}}&nbsp;
+    {{for post_tag_rel in post_tag_rels:}}
+        {{if post.id == post_tag_rel.post.id:}}
+        <a href="http://all-free-download.com/free-website-templates/">{{=post_tag_rel.tag.tag_name}}</a>&nbsp;
+        {{pass}}
+    {{pass}}
+</p>
 {{else:}}
-<p class="post-info">{{=post.post_datetime}} | {{=label_tags}} <a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
-<a href="http://all-free-download.com/free-website-templates/">TAG1</a>&nbsp;
-<a href="http://all-free-download.com/free-website-templates/">TAG2</a>&nbsp;
-<a href="http://all-free-download.com/free-website-templates/">TAG3</a></p>
+<p class="post-info">{{=getLocalTimeStr(post.post_datetime)}} | {{=label_tags}}&nbsp;
+    {{for post_tag_rel in post_tag_rels:}}
+        {{if post.id == post_tag_rel.post.id:}}
+        <a href="http://all-free-download.com/free-website-templates/">{{=post_tag_rel.tag.tag_name}}</a>&nbsp;
+        {{pass}}
+    {{pass}}
+</p>
 {{pass}}
 
 <!-- post body -->

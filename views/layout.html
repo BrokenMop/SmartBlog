@@ -28,11 +28,23 @@
         {{include 'footer.html'}}
 </body>
 
+
 <script>
     $(document).ready(function() {
         $('.alert:empty').hide();
     });
-
 </script>
+
+<!-- Code for timezone detection -->
+{{if is_timezone_unknown:}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
+    <script>
+        $(function() {
+            var tz_name = jstz.determine();
+            $.get("{{=URL('default', 'set_timezone')}}", tz_name);
+        });
+
+    </script>
+{{pass}}
 
 </html>

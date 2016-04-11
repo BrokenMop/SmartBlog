@@ -10,7 +10,24 @@
 #########################################################################
 
 def index():
-    redirect(URL('post', 'index'))
+    max_results = 10
+    page = 1
+    posts = db().select(db.post.ALL, limitby=((page-1) * max_results, page * max_results), orderby = "post.post_datetime DESC")
+
+    post_id_list = [post.id for post in posts]
+
+    post_tag_rels = db(db.post_tag.post.belongs(post_id_list)).select(db.post_tag.ALL, orderby = db.post_tag.post|db.post_tag.tag)
+
+    # response variables:
+    # posts label_posted_by  label_tags label_read_more label_comments
+
+    return dict(posts = posts,
+                post_tag_rels = post_tag_rels,
+                label_posted_by = T('Posted by'),
+                label_tags = T('Tags'),
+                label_read_more = T('Read more'),
+                label_comments = T('Comments')
+                )
 
 
 def login():
@@ -58,7 +75,7 @@ def call():
     return service()
 
 
-@auth.requires_login() 
+@auth.requires_login()
 def api():
     """
     this is example of API with access control
@@ -69,3 +86,10 @@ def api():
         '<tablename>': {'GET':{},'POST':{},'PUT':{},'DELETE':{}},
         }
     return Collection(db).process(request,response,rules)
+
+#Ajax call to set the timezone information for the session.
+def set_timezone():
+    tz_name = request.vars.name
+    from pytz import all_timezones_set
+    if tz_name in all_timezones_set:
+        session.user_timezone = tz_name

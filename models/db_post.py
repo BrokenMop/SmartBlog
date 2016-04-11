@@ -3,6 +3,9 @@
 db.define_table('category',
                 Field('category_name'))
 
+db.define_table('tag',
+                Field('tag_name'))
+
 db.define_table('post',
                 Field('title'),
                 Field('body', 'text'),
@@ -11,6 +14,11 @@ db.define_table('post',
                 Field('if_display_author', 'boolean'),
                 Field('post_datetime', 'datetime')
                 )
+
+db.define_table('post_tag',
+                Field('post', 'reference post'),
+                Field('tag', 'reference tag')
+               )
 
 def getAllCategories():
     query = db.category.id>0

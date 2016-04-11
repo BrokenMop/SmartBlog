@@ -8,7 +8,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
 <head>
   {{
-  response.files.insert(5,URL('static','css/screen.css'))
+  response.files.insert(0,URL('static','css/screen.css'))
   }}
 
   {{include 'web2py_ajax.html'}}
@@ -28,11 +28,22 @@
         {{include 'footer.html'}}
 </body>
 
+
 <script>
     $(document).ready(function() {
         $('.alert:empty').hide();
     });
-
 </script>
+
+<!-- Code for timezone detection -->
+{{if is_timezone_unknown:}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
+    <script>
+        $(function() {
+            var tz_name = jstz.determine();
+            $.get("{{=URL('default', 'set_timezone')}}", tz_name);
+        });
+
+    </script>
 
 </html>

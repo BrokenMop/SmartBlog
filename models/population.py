@@ -31,27 +31,46 @@ def assign_group(user, group):
 def populate_category():
     #NEED TO CONSIDER TRANSLATION
     category_list = []
-    category_list.append(db.category.insert(category_name = '测评'))
-    category_list.append(db.category.insert(category_name = '新闻'))
-    category_list.append(db.category.insert(category_name = '停产'))
+    category_list.append(db.category.insert(category_name = 'Category1'))
+    category_list.append(db.category.insert(category_name = 'Category2'))
+    category_list.append(db.category.insert(category_name = 'Category3'))
     db.commit()
     return category_list
 
-def populate_post(category_list, num_of_posts, author):
+def populate_tag():
+    tag_list = []
+    tag_list.append(db.tag.insert(tag_name = 'Tag1'))
+    tag_list.append(db.tag.insert(tag_name = 'Tag2'))
+    tag_list.append(db.tag.insert(tag_name = 'Tag3'))
+    tag_list.append(db.tag.insert(tag_name = 'Tag4'))
+    tag_list.append(db.tag.insert(tag_name = 'Tag5'))
+    db.commit()
+    return tag_list
+
+def populate_post(category_list, tag_list, num_of_posts, author):
     post_list = []
     for i in range(num_of_posts):
+        # ASCII POST
         if bool(random.getrandbits(1)):
             title = get_random_string(10, 30)
             body = get_random_string(50, 400)
+        # UNICODE POST
         else:
             title = get_random_ustring(10, 20)
             body = get_random_ustring(40, 350)
+        # INSERT NEW POST
         new_post = db.post.insert(title = title,
                                body = body,
                                category = category_list[i % len(category_list)],
                                post_datetime = datetime.datetime.now(),
                                author = author,
                                if_display_author = bool(random.getrandbits(1)))
+        # GET RANDOM TAGS (0, ALL)
+        selected_tags = random.sample(tag_list, randint(0,len(tag_list)))
+        # IF TAG LIST IS NOT EMPTY
+        if selected_tags:
+            for tag in selected_tags:
+                db.post_tag.insert(post = new_post, tag = tag)
         post_list.append(new_post)
         db.commit()
     return new_post
@@ -64,7 +83,8 @@ def init_db():
         visitor_group = db.auth_group.insert(role = VISITOR_GROUP)
         assign_group(admin, admin_group)
         category_list = populate_category()
-        populate_post(category_list, 20, admin)
+        tag_list = populate_tag()
+        populate_post(category_list, tag_list, 20, admin)
 
 
 
@@ -74,7 +94,8 @@ def clean_db():
     db(db.auth_group.id >0).delete()
     db(db.post.id >0).delete()
     db(db.category.id >0).delete()
+    db(db.tag.id >0).delete()
     db.commit()
 
-#clean_db()
-#init_db()
+clean_db()
+init_db()

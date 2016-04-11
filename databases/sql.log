@@ -116,3 +116,16 @@ ALTER TABLE auth_permission ADD created_on TIMESTAMP;
 timestamp: 2016-04-06T04:06:49.037164
 ALTER TABLE auth_permission ADD modified_on TIMESTAMP;
 success!
+timestamp: 2016-04-11T00:56:10.687765
+CREATE TABLE tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag_name CHAR(512)
+);
+success!
+timestamp: 2016-04-11T00:57:48.595371
+CREATE TABLE post_tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    post INTEGER REFERENCES post (id) ON DELETE CASCADE,
+    tag INTEGER REFERENCES tag (id) ON DELETE CASCADE
+);
+success!

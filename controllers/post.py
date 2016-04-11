@@ -3,19 +3,9 @@
 
 # need to fix, no view, no redicr so far
 def index():
-    max_results = 10
-    page = 1
-    posts = db().select(db.post.ALL, limitby=((page-1) * max_results, page * max_results), orderby = "post.post_datetime DESC")
+    message = 'NEED TO FIX'
 
-    # response variables:
-    # posts label_posted_by  label_tags label_read_more label_comments
-
-    return dict(posts = posts,
-                label_posted_by = T('Posted by'),
-                label_tags = T('Tags'),
-                label_read_more = T('Read more'),
-                label_comments = T('Comments')
-                )
+    return dict(message = message)
 
 #@auth.requires(lambda: auth.has_membership(ADMIN_GROUP) or auth.has_membership(AUTUOR_GROUP))
 def new():
@@ -39,4 +29,4 @@ def save():
                                author = auth.user,
                                if_display_author = if_display_author)
      db.commit()
-     return  redirect(URL('post', vars={'pid':new_post.id}))
+     return  redirect(URL('post', 'index'))

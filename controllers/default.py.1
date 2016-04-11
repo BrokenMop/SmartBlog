@@ -16,7 +16,7 @@ def index():
 
     post_id_list = [post.id for post in posts]
 
-    post_tag_rels = db(db.post_tag.post.belongs(post_id_list)).select(db.post_tag.ALL, orderby = db.post_tag.post|db.post_tag.tag)
+    post_tag_rels = db(db.post_tag.post.belongs(post_id_list)).select(db.post_tag.ALL, orderby = db.post_tag.post|db.post_tag.tag.tag_name)
 
     # response variables:
     # posts label_posted_by  label_tags label_read_more label_comments

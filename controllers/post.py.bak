@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 # try something like
 
-# need to improve
+# need to fix, no view, no redicr so far
 def index():
     max_results = 10
     page = 1
     posts = db().select(db.post.ALL, limitby=((page-1) * max_results, page * max_results), orderby = "post.post_datetime DESC")
 
+    post_id_list = [post.id for post in posts]
+
+    post_tag_rels = db(db.post_tag.post.belongs(post_id_list)).select(db.post_tag.ALL, orderby = db.post_tag.post)
+
     # response variables:
     # posts label_posted_by  label_tags label_read_more label_comments
 
     return dict(posts = posts,
+                post_tag_rels = post_tag_rels,
                 label_posted_by = T('Posted by'),
                 label_tags = T('Tags'),
                 label_read_more = T('Read more'),
@@ -39,4 +44,4 @@ def save():
                                author = auth.user,
                                if_display_author = if_display_author)
      db.commit()
-     return  redirect(URL('post', vars={'pid':new_post.id}))
+     return  redirect(URL('post', 'index'))

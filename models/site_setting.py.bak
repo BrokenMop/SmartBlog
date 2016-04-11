@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# TRANS  Username 
+# TRANS  ALL 
 
-auth.messages.invalid_login = "The email and password you entered don't match. hahaha"
+auth.messages.invalid_login = "The email and password you entered don't match."
