@@ -9,6 +9,7 @@
 ## be redirected to HTTPS, uncomment the line below:
 # request.requires_https()
 
+
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
     db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
@@ -44,11 +45,17 @@ response.generic_patterns = ['*'] if request.is_local else []
 from gluon.tools import Auth, Service, PluginManager
 
 auth = Auth(db)
+
+
+for table_name in db.tables():
+    db[table_name].drop()
+db.commit()
+
 service = Service()
 plugins = PluginManager()
 
 ## create all tables needed by auth if not custom tables
-auth.define_tables(username=False, signature=False)
+auth.define_tables(username=True, signature=True)
 
 ## configure email
 mail = auth.settings.mailer
@@ -86,3 +93,8 @@ use_janrain(auth, filename='private/janrain.key')
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
 
+db.auth_user.first_name.readable = False
+db.auth_user.first_name.writable = False
+
+db.auth_user.last_name.readable = False
+db.auth_user.last_name.writable = False

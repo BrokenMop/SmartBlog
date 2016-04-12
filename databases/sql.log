@@ -1,39 +1,60 @@
-timestamp: 2016-04-05T02:26:48.672776
+timestamp: 2016-04-12T00:04:56.961803
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
     last_name CHAR(128),
     email CHAR(512),
+    username CHAR(128),
     password CHAR(512),
     registration_key CHAR(512),
     reset_password_key CHAR(512),
-    registration_id CHAR(512)
+    registration_id CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2016-04-05T02:26:48.702146
+timestamp: 2016-04-12T00:04:56.996722
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
-    description TEXT
+    description TEXT,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2016-04-05T02:26:48.735758
+timestamp: 2016-04-12T00:04:57.033732
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
-    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2016-04-05T02:26:48.766053
+timestamp: 2016-04-12T00:04:57.064463
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
     name CHAR(512),
     table_name CHAR(512),
-    record_id INTEGER
+    record_id INTEGER,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2016-04-05T02:26:48.794608
+timestamp: 2016-04-12T00:04:57.096056
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +64,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2016-04-05T02:26:48.825234
+timestamp: 2016-04-12T00:04:57.129120
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -53,79 +74,1446 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-04-06T04:05:48.320023
-CREATE TABLE category(
+timestamp: 2016-04-12T00:04:57.154984
+CREATE TABLE post_category(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     category_name CHAR(512)
 );
 success!
-timestamp: 2016-04-06T04:05:48.365682
+timestamp: 2016-04-12T00:04:57.183134
+CREATE TABLE post_tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag_name CHAR(512)
+);
+success!
+timestamp: 2016-04-12T00:04:57.213802
 CREATE TABLE post(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title CHAR(512),
     body TEXT,
-    category INTEGER REFERENCES category (id) ON DELETE CASCADE,
+    category INTEGER REFERENCES post_category (id) ON DELETE CASCADE,
     author INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     if_display_author CHAR(1),
     post_datetime TIMESTAMP
 );
 success!
-timestamp: 2016-04-06T04:06:48.305432
-ALTER TABLE auth_user ADD username CHAR(128);
-timestamp: 2016-04-06T04:06:48.357784
-ALTER TABLE auth_user ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.386192
-ALTER TABLE auth_user ADD is_active CHAR(1);
-timestamp: 2016-04-06T04:06:48.424783
-ALTER TABLE auth_user ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.468551
-ALTER TABLE auth_user ADD created_on TIMESTAMP;
-timestamp: 2016-04-06T04:06:48.494536
-ALTER TABLE auth_user ADD modified_on TIMESTAMP;
-success!
-timestamp: 2016-04-06T04:06:48.559983
-ALTER TABLE auth_group ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.593851
-ALTER TABLE auth_group ADD is_active CHAR(1);
-timestamp: 2016-04-06T04:06:48.616817
-ALTER TABLE auth_group ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.644761
-ALTER TABLE auth_group ADD created_on TIMESTAMP;
-timestamp: 2016-04-06T04:06:48.679835
-ALTER TABLE auth_group ADD modified_on TIMESTAMP;
-success!
-timestamp: 2016-04-06T04:06:48.743329
-ALTER TABLE auth_membership ADD is_active CHAR(1);
-timestamp: 2016-04-06T04:06:48.764986
-ALTER TABLE auth_membership ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.790101
-ALTER TABLE auth_membership ADD created_on TIMESTAMP;
-timestamp: 2016-04-06T04:06:48.817094
-ALTER TABLE auth_membership ADD modified_on TIMESTAMP;
-timestamp: 2016-04-06T04:06:48.845618
-ALTER TABLE auth_membership ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-success!
-timestamp: 2016-04-06T04:06:48.902779
-ALTER TABLE auth_permission ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:48.938422
-ALTER TABLE auth_permission ADD is_active CHAR(1);
-timestamp: 2016-04-06T04:06:48.964781
-ALTER TABLE auth_permission ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
-timestamp: 2016-04-06T04:06:49.001630
-ALTER TABLE auth_permission ADD created_on TIMESTAMP;
-timestamp: 2016-04-06T04:06:49.037164
-ALTER TABLE auth_permission ADD modified_on TIMESTAMP;
-success!
-timestamp: 2016-04-11T00:56:10.687765
-CREATE TABLE tag(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    tag_name CHAR(512)
-);
-success!
-timestamp: 2016-04-11T00:57:48.595371
-CREATE TABLE post_tag(
+timestamp: 2016-04-12T00:04:57.244154
+CREATE TABLE post_tag_rel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     post INTEGER REFERENCES post (id) ON DELETE CASCADE,
-    tag INTEGER REFERENCES tag (id) ON DELETE CASCADE
+    tag INTEGER REFERENCES post_tag (id) ON DELETE CASCADE
 );
+success!
+timestamp: 2016-04-12T00:04:57.277792
+CREATE TABLE theme(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    theme_name CHAR(512)
+);
+success!
+timestamp: 2016-04-12T00:04:57.307822
+CREATE TABLE sub_theme(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sub_theme_name CHAR(512),
+    theme INTEGER REFERENCES theme (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2016-04-12T00:04:57.336501
+CREATE TABLE lego_set(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    set_number CHAR(512),
+    set_name CHAR(512),
+    piece_count CHAR(512),
+    minifig_count CHAR(512),
+    year_released CHAR(512),
+    theme INTEGER REFERENCES theme (id) ON DELETE CASCADE,
+    sub_theme INTEGER REFERENCES sub_theme (id) ON DELETE CASCADE
+);
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM post_tag_rel;
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
+success!
+DELETE FROM post_tag_rel;
+DELETE FROM sqlite_sequence WHERE name='post_tag_rel';
+success!
+DELETE FROM post_tag;
+DELETE FROM sqlite_sequence WHERE name='post_tag';
+success!
+DELETE FROM post;
+DELETE FROM sqlite_sequence WHERE name='post';
+success!
+DELETE FROM post_category;
+DELETE FROM sqlite_sequence WHERE name='post_category';
+success!
+DELETE FROM auth_membership;
+DELETE FROM sqlite_sequence WHERE name='auth_membership';
+success!
+DELETE FROM auth_group;
+DELETE FROM sqlite_sequence WHERE name='auth_group';
+success!
+DELETE FROM auth_user;
+DELETE FROM sqlite_sequence WHERE name='auth_user';
 success!

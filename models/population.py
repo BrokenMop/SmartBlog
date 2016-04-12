@@ -5,9 +5,15 @@ import random
 from random import randint
 import datetime
 
+# ================ TEST DATABASE ==========
 ADMIN_GROUP = 'admin'
 AUTUOR_GROUP = 'author'
 VISITOR_GROUP = 'visitor'
+
+THEME_TO_SUBTHEME = {'Creator' : ['3in1'],
+          'City' : ['Fire', 'Police', 'Arctic', 'Volcano'],
+          'Friends' : ['Pop Star', 'Heartlake City'],
+          'Ideas' : []}
 
 TEST_UNICODE_RANGE = range(0x4E00, 0x9fa5)
 TEST_ASCII_STRING = string.lowercase + string.ascii_uppercase + string.digits + string.punctuation
@@ -23,28 +29,30 @@ def populate_user(username, email, password):
     db.commit()
     return user
 
+# ================== POPULATION FUNCS ================
+
 def assign_group(user, group):
     membership = db.auth_membership.insert(user_id = user, group_id = group)
     db.commit()
     return membership
 
-def populate_category():
+def populate_post_category():
     #NEED TO CONSIDER TRANSLATION
     category_list = []
-    category_list.append(db.category.insert(category_name = 'Category1'))
-    category_list.append(db.category.insert(category_name = 'Category2'))
-    category_list.append(db.category.insert(category_name = 'Category3'))
+    category_list.append(db.post_category.insert(category_name = 'Category6'))
+    category_list.append(db.post_category.insert(category_name = 'Category5'))
+    category_list.append(db.post_category.insert(category_name = 'Category4'))
     db.commit()
     return category_list
 
-def populate_tag():
+def populate_post_tag():
     tag_list = []
-    tag_list.append(db.tag.insert(tag_name = 'Tag1'))
-    tag_list.append(db.tag.insert(tag_name = 'Tag2'))
-    tag_list.append(db.tag.insert(tag_name = 'Tag3'))
-    tag_list.append(db.tag.insert(tag_name = 'Tag4'))
-    tag_list.append(db.tag.insert(tag_name = 'Tag5'))
-    db.commit()
+    tag_list.append(db.post_tag.insert(tag_name = 'Tag1'))
+    tag_list.append(db.post_tag.insert(tag_name = 'Tag2'))
+    tag_list.append(db.post_tag.insert(tag_name = 'Tag3'))
+    tag_list.append(db.post_tag.insert(tag_name = 'Tag4'))
+    tag_list.append(db.post_tag.insert(tag_name = 'Tag5'))
+    db.commit
     return tag_list
 
 def populate_post(category_list, tag_list, num_of_posts, author):
@@ -70,32 +78,59 @@ def populate_post(category_list, tag_list, num_of_posts, author):
         # IF TAG LIST IS NOT EMPTY
         if selected_tags:
             for tag in selected_tags:
-                db.post_tag.insert(post = new_post, tag = tag)
+               db.post_tag_rel.insert(post = new_post, tag = tag)
         post_list.append(new_post)
         db.commit()
     return new_post
 
+def populate_theme(theme_list):
+    for theme in theme_list:
+        theme_list.append(db.theme.insert(theme_name = theme))
+    db.commit
+    return theme_list
+
+
+# ================== CLEAN FUNCS ================
+
+def clean_db():
+    clean_post_tables()
+    clean_user_tables()
+
+def clean_user_tables():
+    db.auth_membership.truncate()
+    db.auth_group.truncate()
+    db.auth_user.truncate()
+    db.commit()
+
+def clean_post_tables():
+    db.post_tag_rel.truncate()
+    db.post_tag.truncate()
+    db.post.truncate()
+    db.post_category.truncate()
+    db.commit()
+
+def clean_set_tables():
+    db.lego_set.truncate()
+    db.sub_theme.truncate()
+    db.theme.truncate()
+    db.commit()
+
+
 def init_db():
     if db(db.auth_user).isempty() and db(db.auth_group).isempty():
-        admin = populate_user('admin1', 'jerryliu0228@gmail.com', 'password')
+        # users and groups
+        admin = populate_user('administrator', 'jerryliu0228@gmail.com', 'pass')
         admin_group = db.auth_group.insert(role = ADMIN_GROUP)
         author_group = db.auth_group.insert(role = AUTUOR_GROUP)
         visitor_group = db.auth_group.insert(role = VISITOR_GROUP)
         assign_group(admin, admin_group)
-        category_list = populate_category()
-        tag_list = populate_tag()
+
+        # categories, tags, and posts
+        category_list = populate_post_category()
+        tag_list = populate_post_tag()
         populate_post(category_list, tag_list, 20, admin)
 
-
-
-def clean_db():
-    db(db.auth_membership.id >0).delete()
-    db(db.auth_user.id >0).delete()
-    db(db.auth_group.id >0).delete()
-    db(db.post.id >0).delete()
-    db(db.category.id >0).delete()
-    db(db.tag.id >0).delete()
-    db.commit()
-
+        # lego sets
+        populate_theme(list(THEME_TO_SUBTHEME.keys()))
 clean_db()
 init_db()

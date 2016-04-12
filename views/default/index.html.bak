@@ -1,5 +1,4 @@
 {{extend 'centertwocols.html'}}
-
 {{for post in posts:}}
 
 <!-- post title -->
@@ -11,7 +10,7 @@
 <!-- TAGS NEED TO IMPLEMENTED -->
 {{if post.if_display_author:}}
 <p class="post-info">{{=label_posted_by}} <a href="http://all-free-download.com/free-website-templates/">{{=post.author.username}}</a> |&nbsp;
-    {{=getLocalTimeStr(post.post_datetime)}} | {{=label_tags}}&nbsp;
+    {{=getLocalTimeStr(post.post_datetime)}} | {{=label_category}} {{=post.category.category_name}} <br /> {{=label_tags}}&nbsp;
     {{for post_tag_rel in post_tag_rels:}}
         {{if post.id == post_tag_rel.post.id:}}
         <a href="http://all-free-download.com/free-website-templates/">{{=post_tag_rel.tag.tag_name}}</a>&nbsp;
@@ -19,7 +18,7 @@
     {{pass}}
 </p>
 {{else:}}
-<p class="post-info">{{=getLocalTimeStr(post.post_datetime)}} | {{=label_tags}}&nbsp;
+<p class="post-info">{{=getLocalTimeStr(post.post_datetime)}} | {{=label_category}} {{=post.category.category_name}} <br /> {{=label_tags}}&nbsp;
     {{for post_tag_rel in post_tag_rels:}}
         {{if post.id == post_tag_rel.post.id:}}
         <a href="http://all-free-download.com/free-website-templates/">{{=post_tag_rel.tag.tag_name}}</a>&nbsp;

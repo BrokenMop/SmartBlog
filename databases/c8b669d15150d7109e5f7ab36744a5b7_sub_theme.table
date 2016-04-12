@@ -1,5 +1,5 @@
 (dp1
-S'tag_name'
+S'theme'
 p2
 (dp3
 S'length'
@@ -10,21 +10,38 @@ p5
 I00
 sS'sortable'
 p6
-I2
+I3
 sS'sql'
 p7
-S'CHAR(512)'
+S'INTEGER REFERENCES theme (id) ON DELETE CASCADE'
 p8
 sS'notnull'
 p9
 I00
 sS'type'
 p10
-S'string'
+S'reference theme'
 p11
-ssS'id'
+ssS'sub_theme_name'
 p12
 (dp13
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'CHAR(512)'
+p14
+sg9
+I00
+sg10
+S'string'
+p15
+ssS'id'
+p16
+(dp17
 g4
 I512
 sg5
@@ -33,9 +50,9 @@ sg6
 I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
-p14
+p18
 sg9
 I00
 sg10
-g12
+g16
 ss.

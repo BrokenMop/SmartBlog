@@ -5,15 +5,9 @@ import random
 from random import randint
 import datetime
 
-# ================ TEST DATABASE ==========
 ADMIN_GROUP = 'admin'
 AUTUOR_GROUP = 'author'
 VISITOR_GROUP = 'visitor'
-
-THEMES = {'Creator' : ['3in1'],
-          'City' : ['Fire', 'Police', 'Arctic', 'Volcano'],
-          'Friends' : ['Pop Star', 'Heartlake City'],
-          'Ideas' : []}
 
 TEST_UNICODE_RANGE = range(0x4E00, 0x9fa5)
 TEST_ASCII_STRING = string.lowercase + string.ascii_uppercase + string.digits + string.punctuation
@@ -29,8 +23,6 @@ def populate_user(username, email, password):
     db.commit()
     return user
 
-# ================== POPULATION FUNCS ================
-
 def assign_group(user, group):
     membership = db.auth_membership.insert(user_id = user, group_id = group)
     db.commit()
@@ -39,9 +31,9 @@ def assign_group(user, group):
 def populate_post_category():
     #NEED TO CONSIDER TRANSLATION
     category_list = []
-    category_list.append(db.post_category.insert(category_name = 'Category6'))
-    category_list.append(db.post_category.insert(category_name = 'Category5'))
-    category_list.append(db.post_category.insert(category_name = 'Category4'))
+    category_list.append(db.post_category.insert(category_name = 'Category1'))
+    category_list.append(db.post_category.insert(category_name = 'Category2'))
+    category_list.append(db.post_category.insert(category_name = 'Category3'))
     db.commit()
     return category_list
 
@@ -83,16 +75,21 @@ def populate_post(category_list, tag_list, num_of_posts, author):
         db.commit()
     return new_post
 
-def populate_theme():
-    theme_list = []
-    theme_list.append(db.theme.insert(theme_name = 'Creator'))
-    theme_list.append(db.theme.insert(theme_name = 'City'))
-    theme_list.append(db.theme.insert(theme_name = 'Friends'))
-    db.commit
-    return theme_list
+def init_db():
+    if db(db.auth_user).isempty() and db(db.auth_group).isempty():
+        # user and groups
+        admin = populate_user('administrator', 'jerryliu0228@gmail.com', 'pass')
+        admin_group = db.auth_group.insert(role = ADMIN_GROUP)
+        author_group = db.auth_group.insert(role = AUTUOR_GROUP)
+        visitor_group = db.auth_group.insert(role = VISITOR_GROUP)
+        assign_group(admin, admin_group)
+
+        # category, tags, and posts
+        category_list = populate_post_category()
+        tag_list = populate_post_tag()
+        #populate_post(category_list, tag_list, 20, admin)
 
 
-# ================== CLEAN FUNCS ================
 
 def clean_db():
     clean_post_tables()
@@ -109,30 +106,7 @@ def clean_post_tables():
     db.post_tag.truncate()
     db.post.truncate()
     db.post_category.truncate()
-    db.commit()
 
-def clean_set_tables():
-    db.lego_set.truncate()
-    db.sub_theme.truncate()
-    db.theme.truncate()
-    db.commit()
-
-
-def init_db():
-    if db(db.auth_user).isempty() and db(db.auth_group).isempty():
-        # users and groups
-        admin = populate_user('administrator', 'jerryliu0228@gmail.com', 'pass')
-        admin_group = db.auth_group.insert(role = ADMIN_GROUP)
-        author_group = db.auth_group.insert(role = AUTUOR_GROUP)
-        visitor_group = db.auth_group.insert(role = VISITOR_GROUP)
-        assign_group(admin, admin_group)
-
-        # categories, tags, and posts
-        category_list = populate_post_category()
-        tag_list = populate_post_tag()
-        populate_post(category_list, tag_list, 20, admin)
-
-        # lego sets
 
 clean_db()
 init_db()
