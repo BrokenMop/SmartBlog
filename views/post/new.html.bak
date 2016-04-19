@@ -11,21 +11,22 @@
 {{extend 'centeronecol.html'}}
 
 <div id="post-new" class="grid_16 alpha">
+    <h3>Create a New Post</h3>
     <form  action="{{=URL('save')}}" method="POST">
         <p class="no-border">
-            <label for="auth_user_username">Title</label><br />
+            <label for="post-title">Title</label><br />
             <input id="post-title" name="post-title" type="text" class="span10" placeholder="Enter a title" required>
         </p>
         <p class="no-border">
-            <label for="auth_user_username">Category</label><br />
+            <label for="post-category">Category</label><br />
             <select id="post-category" name="post-category" class="span2" required></select>
         </p>
         <p class="no-border">
-            <label class="control-label">Blog Body</label><br />
+            <label class="post-body">Blog Body</label><br />
             <textarea name="post-body" id="post-body" rows="30" cols="40"></textarea>
         </p>
         <p class="no-border">
-            <label class="control-label">Display Author</label><br />
+            <label class="if-display-author">Display Author</label><br />
             <input type="checkbox" id="if-display-author" name="if-display-author" checked >
         </p>
 
@@ -43,10 +44,10 @@
        $( document ).ready(function() {
         var select1 = document.getElementById("post-category");
         {{for r in categories:}}
-           var opt = '{{=r.category.category_name}} ({{=r.count}}) '
+           var opt = '{{=r.post_category.category_name}} ({{=r.count}}) '
             var el = document.createElement("option");
             el.textContent = opt;
-            el.value = '{{=r.category.id}}';
+            el.value = '{{=r.post_category.id}}';
             select1.appendChild(el);
         {{pass}}
         });

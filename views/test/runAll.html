@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<table border = '3px'>
+{{for c in cases:}}
+    <tr><td>{{=c.number}}</td>
+       {{if c.result == 'PASS':}}
+            <td bgcolor = 'green'>{{=c.result}}</td>
+       {{elif c.result == 'FAIL':}}
+            <td bgcolor = 'red'>{{=c.result}}</td>
+       {{else:}}
+            <td bgcolor = 'gray'>{{=c.result}}</td>
+       {{pass}}</tr>{{pass}}
+</table>

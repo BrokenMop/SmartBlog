@@ -629,9 +629,14 @@ ol.commentlist {
 }
 
 /* login form*/
-#login input[type="text"] {
-    width: 400px;
+#login input[type="text"],
+#login input[type="password"]{
+    width: 300px;
 }
 #login input[type="submit"] {
     width: 60px;
+}
+
+.form-input{
+    width: 67%;
 }

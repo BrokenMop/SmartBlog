@@ -20,6 +20,7 @@ def index():
     return dict(posts = post_list,
                 post_tag_rels = post_tag_rels,
                 label_posted_by = T('Posted by'),
+                label_category = T('Category'),
                 label_tags = T('Tags'),
                 label_read_more = T('Read more'),
                 label_comments = T('Comments')

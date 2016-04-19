@@ -28,7 +28,7 @@ def getAllPostCategories():
 
 def getAllPostCategoriesWithCount():
     count = db.post_category.id.count().with_alias('count')
-    rows=db().select(db.category.category_name, db.category.id, count,
+    rows=db().select(db.post_category.category_name, db.post_category.id, count,
         left=db.post.on(db.post_category.id == db.post.category), groupby = db.post_category.id)
     return rows
 

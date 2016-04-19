@@ -636,3 +636,7 @@ ol.commentlist {
 #login input[type="submit"] {
     width: 60px;
 }
+
+.form-input{
+    width: 67%;
+}

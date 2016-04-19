@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+db.define_table('theme',
+                Field('theme_name'))
+
+db.define_table('sub_theme',
+                Field('sub_theme_name'),
+                Field('theme', 'reference theme')
+                )
+
+db.define_table('lego_set',
+                Field('set_number'),
+                Field('set_name'),
+                Field('piece_count'),
+                Field('minifig_count'),
+                Field('year_released'),
+                Field('theme', 'reference theme'),
+                Field('sub_theme', 'reference sub_theme')
+                )
+
+def search_theme(theme_name):
+    return db(db.theme.theme_name == theme_name).select().first()
+
+def search_subtheme(subtheme_name):
+    return db(db.subtheme.subtheme_name == subtheme_name).select().first()
+
+def if_theme_exists(theme_name):
+    theme = db(db.theme.theme_name==theme_name).select().first()
+
+def insert_new_theme(theme_name):
+    theme = b.theme.update_or_insert(theme_name=theme_name)
+    db.commit()
+    return theme
+
+def insert_new_subtheme(theme_name, subtheme_name):
+    theme = db(db.theme.theme_name==theme_name).select().first()
+    if not theme:
+        theme = insert_new_theme(theme_name)
+    subtheme = db.subtheme.update_or_insert(subtheme_name = subtheme_name, theme = theme)
+    db.commit()
+    return subtheme
+
+def insert_new_set(set_number, set_name, piece_count, minifig_count, 
+                   year_released, theme_name, subtheme_name):

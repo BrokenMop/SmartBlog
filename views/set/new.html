@@ -1,0 +1,108 @@
+<!-- UPDATE  tabindex -->
+<!-- TRANS  Title -->
+<!-- TRANS  Blog Body -->
+<!-- TRANS  Display Author -->
+
+
+{{extend 'centeronecol.html'}}
+
+    <h3>Add New Set to Database</h3>
+    <form  action="{{=URL('save')}}" method="POST">
+
+                <p class="no-border">
+                     <label for="set-number">Set Number</label><br />
+                     <input class="form-input" id="set-number" name="set-number" type="number" min="0" step="1" placeholder="Enter set number" required>
+                </p>
+                <p class="no-border">
+                    <label for="set-name">Set Name</label><br />
+                    <input class="form-input" id="set-number" id="set-name" name="set-name" placeholder="Enter set name" required>
+                </p>
+                <p class="no-border">
+                    <label class="piece-count">Piece Count</label><br />
+                    <input class="form-input" name="piece-count" id="piece-count" type="number" min="0" step="1" placeholder="Enter piece count">
+                </p>
+                <p class="no-border">
+                    <label class="minifig-count">Minifig Count</label><br />
+                    <input class="form-input" name="minifig-count" id="minifig-count" type="number" min="0" step="1" placeholder="Enter minifig count">
+                </p>
+                <p class="no-border">
+                    <label class="minifig-count">Release Year</label><br />
+                    <select class="form-select" name="release-year" id="release-year" placeholder="Enter release year"></select>
+                </p>
+                <p class="no-border">
+                    <label class="retail-price-usd">Retail Price(USD)</label><br />
+                    <input class="form-input" name="retail-price-usd" id="retail-price-usd" type="number" min="0.00" step="0.01" placeholder="Enter retail price(USD)"> $
+                </p>
+                <p class="no-border">
+                    <label class="retail-price-euro">Retail Price(EURO)</label><br />
+                    <input class="form-input" name="retail-price-euro" id="retail-price-euro" type="number" min="0.00" step="0.01" placeholder="Enter retail price(EURO)"> €
+                </p>
+                <p class="no-border">
+                    <label class="retail-price-pound">Retail Price(POUND)</label><br />
+                    <input class="form-input" name="retail-price-pound" id="retail-price-pound" type="number" min="0.00" step="0.01" placeholder="Enter retail price(POUND)"> £
+                </p>
+                <p class="no-border">
+                    <label for="theme">Theme</label><br />
+                    <select id="theme" name="theme" onchange="loadSubtheme()"></select>
+                </p>
+                <p class="no-border">
+                    <label for="subtheme">Sub-theme</label><br />
+                    <select id="subtheme" name="subtheme"></select>
+                </p>
+                <p class="no-border">
+                    <label for="age-range">Age Range</label><br />
+                    <select id="age-range" name="age-range"></select>
+                </p>
+                 <p>
+                    <input class="button" type="submit" value="Submit" tabindex="3" />
+                </p>
+    </form>
+
+    <script>
+        $( document ).ready(function() {
+            var myselect = document.getElementById("release-year"), year = new Date().getFullYear();
+            var gen = function(max){do{myselect.add(new Option(year--,max--),null);}while(max>0);}(50);
+
+            myselect = document.getElementById("theme");
+            {{for r in themes:}}
+                var opt = '{{=r.theme.theme_name}} ({{=r.count}}) '
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = '{{=r.theme.id}}';
+                myselect.appendChild(el);
+            {{pass}}
+
+            loadSubtheme()
+            
+            myselect = document.getElementById("age-range");
+            {{for r in age_ranges:}}
+                var opt = '{{=r.age_range.age_range}} ({{=r.count}}) '
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = '{{=r.age_range.id}}';
+                myselect.appendChild(el);
+            {{pass}}
+
+        });
+
+        function loadSubtheme(){
+            var myselect = document.getElementById("theme");
+            var selectedTheme = myselect.options[myselect.selectedIndex].value;
+            myselect = document.getElementById("subtheme");
+            var i;
+            for(i=myselect.options.length-1;i>=0;i--)
+            {
+                myselect.remove(i);
+            }
+            {{for r in subthemes:}}
+                if (selectedTheme == {{=r.subtheme.theme}}){
+                    var opt = '{{=r.theme.theme_name}} - {{=r.subtheme.subtheme_name}} ({{=r.count}}) '
+                    var el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = '{{=r.subtheme.id}}';
+                    myselect.appendChild(el);
+                }
+            {{pass}}
+        }
+
+    </script>
